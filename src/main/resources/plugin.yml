@@ -1,0 +1,7 @@
+name: shingasFantasyOrigins
+version: '1.0'
+main: com.shingaspt.shingasFantasyOrigins.ShingasFantasyOrigins
+api-version: '1.21'
+authors: [ShingasPT]
+description: Custom Fantasy Origin Folia Fork
+depend: [Origins-Reborn]

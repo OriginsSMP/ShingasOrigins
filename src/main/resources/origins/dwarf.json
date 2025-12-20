@@ -1,0 +1,16 @@
+{
+  "powers": [
+    "shingasfantasyorigins:dwarf_haste",
+    "shingasfantasyorigins:dwarf_size",
+    "shingasfantasyorigins:dwarf_nightvision",
+    "shingasfantasyorigins:dwarf_ore_fortune",
+    "shingasfantasyorigins:poison_immunity"
+  ],
+  "icon": {
+    "item": "minecraft:iron_pickaxe"
+  },
+  "order": 2,
+  "impact": 2,
+  "name": "Dwarf",
+  "description": "Known for their great skill in finding minerals, the Dwarfs spend most of their time in caves deep underground."
+}
