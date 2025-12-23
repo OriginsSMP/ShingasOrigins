@@ -22,6 +22,7 @@ public final class ShingasOrigins extends OriginsAddon {
     private final DwarfHaste dwarfHaste = new DwarfHaste();
     private final DaylightWeakness dailyLightWeakness = new DaylightWeakness();
     private static DataConfig dataConfig = null;
+    private static ShingasOrigins instance = null;
 
     @Override
     public @NotNull String getNamespace() {
@@ -49,6 +50,7 @@ public final class ShingasOrigins extends OriginsAddon {
     @Override
     public void onRegister() {
         getLogger().info("Shingas Fantasy Origins addon has been loaded!");
+        instance = this;
 
         getLogger().info("Loading config...");
         dataConfig = new DataConfig(this);
@@ -89,5 +91,7 @@ public final class ShingasOrigins extends OriginsAddon {
     }
 
     public static DataConfig getDataConfig() { return dataConfig; }
+
+    public static ShingasOrigins getInstance() { return instance; }
 
 }

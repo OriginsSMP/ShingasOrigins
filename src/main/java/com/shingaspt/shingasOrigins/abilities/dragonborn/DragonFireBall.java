@@ -72,7 +72,7 @@ public class DragonFireBall implements VisibleAbility, CooldownAbility, Listener
         try {
             if (event.getAction() != Action.LEFT_CLICK_AIR || !NEEDED_ITEMS.contains(event.getItem().getType())) return;
 
-            NamespacedKey dragonFireballKey = new NamespacedKey(new ShingasOrigins(), "dragonFireball");
+            NamespacedKey dragonFireballKey = new NamespacedKey(ShingasOrigins.getInstance(), "dragonFireball");
             runForAbility(player, p -> {
 
                 if (hasCooldown(p)) {
@@ -101,7 +101,7 @@ public class DragonFireBall implements VisibleAbility, CooldownAbility, Listener
         if (!(event.getDamager() instanceof Fireball fireball)) return;
         if (!(event.getEntity() instanceof Player player)) return;
 
-        NamespacedKey dragonFireballKey = new NamespacedKey(new ShingasOrigins(), "dragonFireball");
+        NamespacedKey dragonFireballKey = new NamespacedKey(ShingasOrigins.getInstance(), "dragonFireball");
         PersistentDataContainer data = fireball.getPersistentDataContainer();
 
         // Does this fireball have an owner?
@@ -121,7 +121,7 @@ public class DragonFireBall implements VisibleAbility, CooldownAbility, Listener
     public void onExplode(EntityExplodeEvent event) {
         if (!(event.getEntity() instanceof Fireball fireball)) return;
 
-        NamespacedKey dragonFireballKey = new NamespacedKey(new ShingasOrigins(), "dragonFireball");
+        NamespacedKey dragonFireballKey = new NamespacedKey(ShingasOrigins.getInstance(), "dragonFireball");
         if (!fireball.getPersistentDataContainer().has(dragonFireballKey, PersistentDataType.STRING)) return;
 
         event.blockList().clear(); // No block damage
