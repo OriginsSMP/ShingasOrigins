@@ -1,7 +1,11 @@
-name: shingasFantasyOrigins
+name: shingasOrigins
 version: '1.0'
-main: com.shingaspt.shingasFantasyOrigins.ShingasFantasyOrigins
+main: com.shingaspt.shingasOrigins.ShingasOrigins
 api-version: '1.21'
 authors: [ShingasPT]
-description: Custom Fantasy Origin Folia Fork
+description: Shingas Custom Origin Addon
 depend: [Origins-Reborn]
+commands:
+  vamptoggle:
+    description: "Toggles on/off the vampire transformation when killing players."
+    usage: "/vamptoggle <on/off>"

@@ -1,4 +1,4 @@
-package com.shingaspt.shingasFantasyOrigins.abilities.dwarf;
+package com.shingaspt.shingasOrigins.abilities.dwarf;
 
 import com.starshootercity.abilities.types.AttributeModifierAbility;
 import net.kyori.adventure.key.Key;

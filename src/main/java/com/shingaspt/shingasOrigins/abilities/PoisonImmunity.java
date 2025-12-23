@@ -1,4 +1,4 @@
-package com.shingaspt.shingasFantasyOrigins.abilities;
+package com.shingaspt.shingasOrigins.abilities;
 
 import com.starshootercity.abilities.types.VisibleAbility;
 import net.kyori.adventure.key.Key;

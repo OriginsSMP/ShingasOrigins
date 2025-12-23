@@ -1,4 +1,4 @@
-package com.shingaspt.shingasFantasyOrigins.abilities.dwarf;
+package com.shingaspt.shingasOrigins.abilities.dwarf;
 
 import com.starshootercity.abilities.types.Ability;
 import net.kyori.adventure.key.Key;
@@ -11,12 +11,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.TimeUnit;
 
-public class DwarfNightVision implements Ability {
+public class DwarfHaste implements Ability {
 
     @Override
     public @NotNull Key getKey() {
-        return Key.key("shingasfantasyorigins", "dwarf_nightvision");
+        return Key.key("shingasfantasyorigins", "dwarf_haste");
     }
+
 
     public void startTask(Plugin plugin) {
         Bukkit.getAsyncScheduler().runAtFixedRate(
@@ -24,7 +25,7 @@ public class DwarfNightVision implements Ability {
                 scheduledTask -> {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         runForAbility(player, p -> {
-                            p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 220, 1));
+                            p.addPotionEffect(new PotionEffect(PotionEffectType.HASTE, 220, 1));
                         });
                     }
                 },
@@ -33,4 +34,5 @@ public class DwarfNightVision implements Ability {
                 TimeUnit.MILLISECONDS
         );
     }
+
 }
