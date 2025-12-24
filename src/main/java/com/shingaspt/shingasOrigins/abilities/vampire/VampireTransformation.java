@@ -35,8 +35,7 @@ public class VampireTransformation implements VisibleAbility, Listener {
         Player killer = killed.getKiller();
         runForAbility(killer, player -> {
             DataConfig dataConfig = ShingasOrigins.getDataConfig();
-            if (dataConfig.get(player.getUniqueId())) {
-                Bukkit.getLogger().info("" + dataConfig.get(player.getUniqueId()));
+            if (dataConfig.getVampToggle(player.getUniqueId())) {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "origin set " + killed.getName() + " origin vampire");
             }
         });

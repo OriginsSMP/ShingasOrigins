@@ -42,7 +42,7 @@ public class DwarfOreFortune implements Ability, Listener {
 
     @Override
     public @NotNull Key getKey() {
-        return Key.key("shingasfantasyorigins", "dwarf_ore_fortune");
+        return Key.key("shingasorigins", "dwarf_ore_fortune");
     }
 
     private boolean isPickaxe(Material type) {

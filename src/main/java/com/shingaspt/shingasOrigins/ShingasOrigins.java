@@ -7,6 +7,7 @@ import com.shingaspt.shingasOrigins.abilities.dwarf.DwarfNightVision;
 import com.shingaspt.shingasOrigins.abilities.dwarf.DwarfOreFortune;
 import com.shingaspt.shingasOrigins.abilities.dwarf.DwarfSize;
 import com.shingaspt.shingasOrigins.abilities.vampire.*;
+import com.shingaspt.shingasOrigins.commands.DwarfVisionToggle;
 import com.shingaspt.shingasOrigins.commands.VampTransformToggle;
 import com.shingaspt.shingasOrigins.data.DataConfig;
 import com.starshootercity.OriginsAddon;
@@ -58,7 +59,9 @@ public final class ShingasOrigins extends OriginsAddon {
 
         getLogger().info("Registering commands:");
         getCommand("vamptoggle").setExecutor(new VampTransformToggle());
-        getLogger().info(" - ");
+        getCommand("dwarfvision").setExecutor(new DwarfVisionToggle());
+        getLogger().info(" - /vamptoggle <on/off>");
+        getLogger().info(" - /dwarfvision <on/off>");
 
         getLogger().info("Dwarf abilities registered:");
         getLogger().info("  - shingasorigins:dwarf_size");

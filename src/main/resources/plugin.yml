@@ -9,3 +9,6 @@ commands:
   vamptoggle:
     description: "Toggles on/off the vampire transformation when killing players."
     usage: "/vamptoggle <on/off>"
+  dwarfvision:
+    description: "Toggles on/off the dwarf's night vision."
+    usage: "/dwarfvision <on/off>"

@@ -5,6 +5,7 @@ import com.starshootercity.abilities.types.CooldownAbility;
 import com.starshootercity.abilities.types.VisibleAbility;
 import com.starshootercity.cooldowns.Cooldowns;
 import net.kyori.adventure.key.Key;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -30,6 +31,7 @@ public class DragonFireBall implements VisibleAbility, CooldownAbility, Listener
 
 
     private final EntityType dragon_fireball = EntityType.FIREBALL;
+    private final MiniMessage mm = MiniMessage.miniMessage();
 
     private final Set<Material> NEEDED_ITEMS = Set.of(
             Material.WOODEN_SWORD,
@@ -70,17 +72,15 @@ public class DragonFireBall implements VisibleAbility, CooldownAbility, Listener
     public void onPlayerClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         try {
-            if (event.getAction() != Action.LEFT_CLICK_AIR || !NEEDED_ITEMS.contains(event.getItem().getType())) return;
+            if (event.getAction() != Action.RIGHT_CLICK_AIR || !NEEDED_ITEMS.contains(event.getItem().getType())) return;
 
             NamespacedKey dragonFireballKey = new NamespacedKey(ShingasOrigins.getInstance(), "dragonFireball");
             runForAbility(player, p -> {
 
                 if (hasCooldown(p)) {
                     long remaining = getCooldown(p) / 20; // Convert ticks to seconds
-                    p.sendActionBar(net.kyori.adventure.text.Component.text(
-                            "Fire Dash on cooldown: " + remaining + "s",
-                            net.kyori.adventure.text.format.NamedTextColor.RED
-                    ));
+                    String msg = "<red>Fire Dash on cooldown: " + remaining + "s";
+                    p.sendActionBar(mm.deserialize(msg));
                     return;
                 }
 

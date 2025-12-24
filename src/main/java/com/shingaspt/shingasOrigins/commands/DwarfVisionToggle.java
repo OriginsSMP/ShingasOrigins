@@ -2,7 +2,6 @@ package com.shingaspt.shingasOrigins.commands;
 
 import com.shingaspt.shingasOrigins.ShingasOrigins;
 import com.shingaspt.shingasOrigins.data.DataConfig;
-import com.shingaspt.shingasOrigins.data.PlayerData;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,8 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-
-public class VampTransformToggle implements CommandExecutor, TabExecutor {
+public class DwarfVisionToggle implements CommandExecutor, TabExecutor {
 
     private final MiniMessage mm = MiniMessage.miniMessage();
 
@@ -25,15 +23,16 @@ public class VampTransformToggle implements CommandExecutor, TabExecutor {
         if (args.length == 0) {
             return false;
         }
+
         DataConfig dataConfig = ShingasOrigins.getDataConfig();
         switch(args[0]) {
             case "on":
-                dataConfig.setVampToggle(p.getUniqueId(), true);
-                p.sendMessage(mm.deserialize("<dark_gray>[</dark_gray><aqua>VampToggle</aqua><dark_gray>]</dark_gray> Toggled <aqua>on</aqua> vampire transformation when killing a player."));
+                dataConfig.setDwarfVision(p.getUniqueId(), true);
+                p.sendMessage(mm.deserialize("<dark_gray>[</dark_gray><aqua>DwarfVision</aqua><dark_gray>]</dark_gray> Toggled <aqua>on</aqua> your dwarf vision."));
                 break;
             case "off":
-                dataConfig.setVampToggle(p.getUniqueId(), false);
-                p.sendMessage(mm.deserialize("<dark_gray>[</dark_gray><aqua>VampToggle</aqua><dark_gray>]</dark_gray> Toggled <aqua>off</aqua> vampire transformation when killing a player."));
+                dataConfig.setDwarfVision(p.getUniqueId(), false);
+                p.sendMessage(mm.deserialize("<dark_gray>[</dark_gray><aqua>DwarfVision</aqua><dark_gray>]</dark_gray> Toggled <aqua>off</aqua> your dwarf vision."));
                 break;
             default:
                 return false;

@@ -3,6 +3,7 @@ package com.shingaspt.shingasOrigins.data;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -20,7 +21,7 @@ public class DataConfig {
     private final Gson gson;
 
     // Cache
-    private final Map<UUID, Boolean> cache = new HashMap<>();
+    private final Map<UUID, PlayerData> cache = new HashMap<>();
 
     public DataConfig(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -37,15 +38,14 @@ public class DataConfig {
                 dataFile.createNewFile();
             }
 
-            Type type = new TypeToken<Map<String, Boolean>>() {}.getType();
+            Type type = new TypeToken<Map<String, PlayerData>>() {}.getType();
             FileReader reader = new FileReader(dataFile);
-            Map<String, Boolean> rawData = gson.fromJson(reader, type);
+            Map<String, PlayerData> rawData = gson.fromJson(reader, type);
             reader.close();
 
             if (rawData == null) return;
 
-            // Convert String UUIDs to UUID objects
-            for (Map.Entry<String, Boolean> entry : rawData.entrySet()) {
+            for (Map.Entry<String, PlayerData> entry : rawData.entrySet()) {
                 cache.put(UUID.fromString(entry.getKey()), entry.getValue());
             }
 
@@ -57,9 +57,9 @@ public class DataConfig {
 
     public void save() {
         try {
-            Map<String, Boolean> rawData = new HashMap<>();
+            Map<String, PlayerData> rawData = new HashMap<>();
 
-            for (Map.Entry<UUID, Boolean> entry : cache.entrySet()) {
+            for (Map.Entry<UUID, PlayerData> entry : cache.entrySet()) {
                 rawData.put(entry.getKey().toString(), entry.getValue());
             }
 
@@ -74,17 +74,36 @@ public class DataConfig {
         }
     }
 
-    // Optional helpers
-    public boolean get(UUID uuid) {
-        return cache.getOrDefault(uuid, false);
+    private void safeCheck(UUID uuid) {
+        if (!cache.containsKey(uuid)) {
+            PlayerData temp = new PlayerData();
+            temp.dwarfVision = true;
+            temp.vampToggle = false;
+            cache.put(uuid, temp);
+        };
     }
 
-    public void set(UUID uuid, boolean value) {
-        cache.put(uuid, value);
+    public boolean getDwarfVision(UUID uuid) {
+        safeCheck(uuid);
+        return cache.get(uuid).dwarfVision;
     }
 
-    public Map<UUID, Boolean> getCache() {
-        return cache;
+    public boolean getVampToggle(UUID uuid) {
+        safeCheck(uuid);
+        return cache.get(uuid).vampToggle;
     }
+
+    public void setDwarfVision(UUID uuid, boolean dwarfVision) {
+        safeCheck(uuid);
+        PlayerData data = cache.get(uuid);
+        data.dwarfVision = dwarfVision;
+    }
+
+    public void setVampToggle(UUID uuid, boolean vampToggle) {
+        safeCheck(uuid);
+        PlayerData data = cache.get(uuid);
+        data.vampToggle = vampToggle;
+    }
+
 
 }

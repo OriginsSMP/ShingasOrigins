@@ -1,5 +1,7 @@
 package com.shingaspt.shingasOrigins.abilities.dwarf;
 
+import com.shingaspt.shingasOrigins.ShingasOrigins;
+import com.shingaspt.shingasOrigins.data.DataConfig;
 import com.starshootercity.abilities.types.Ability;
 import net.kyori.adventure.key.Key;
 import org.bukkit.Bukkit;
@@ -15,22 +17,24 @@ public class DwarfNightVision implements Ability {
 
     @Override
     public @NotNull Key getKey() {
-        return Key.key("shingasfantasyorigins", "dwarf_nightvision");
+        return Key.key("shingasorigins", "dwarf_nightvision");
     }
 
     public void startTask(Plugin plugin) {
-        Bukkit.getAsyncScheduler().runAtFixedRate(
+        Bukkit.getScheduler().runTaskTimer(
                 plugin,
                 scheduledTask -> {
                     for (Player player : Bukkit.getOnlinePlayers()) {
                         runForAbility(player, p -> {
-                            p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 220, 1));
+                            DataConfig dataConfig = ShingasOrigins.getDataConfig();
+                            if (dataConfig.getDwarfVision(player.getUniqueId())) {
+                                p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 60, 1));
+                            }
                         });
                     }
                 },
-                0L,
-                200L,
-                TimeUnit.MILLISECONDS
+                60L,
+                60L
         );
     }
 }

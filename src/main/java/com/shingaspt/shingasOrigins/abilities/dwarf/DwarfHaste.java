@@ -15,7 +15,7 @@ public class DwarfHaste implements Ability {
 
     @Override
     public @NotNull Key getKey() {
-        return Key.key("shingasfantasyorigins", "dwarf_haste");
+        return Key.key("shingasorigins", "dwarf_haste");
     }
 
 
